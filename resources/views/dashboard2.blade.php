@@ -75,7 +75,7 @@
                         <div class="card-body text-center">
                             <h1>Compra en línea aquí:</h1>
                             <div style="margin-top: 10px;">
-                                <a class="btn btn-primary btn-block" href="#" role="button">Carrito de compras</a>
+                                <a class="btn btn-primary btn-block" href="Carrito" role="button">Carrito de compras</a>
                             </div>
                             <div style="margin-top: 10px;">
                                 <a class="btn btn-primary btn-block" href="#" role="button">Ver compras pasadas</a>

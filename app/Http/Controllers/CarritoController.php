@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class Controller2 extends Controller
+class CarritoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +13,9 @@ class Controller2 extends Controller
      * @return \Illuminate\Http\Response
      */
     const PAGINACION=20;
-    public function index(Request $request)
+    public function index()
     {   
         
-        $buscarpor=$request->get('bp');
-        $producto = Producto::where('nombre','like','%'.$buscarpor.'%')->paginate($this::PAGINACION);
-        return view('Busqueda', compact('producto','buscarpor'));
     }
 
     /**

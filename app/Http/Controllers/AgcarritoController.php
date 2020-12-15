@@ -2,24 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class Controller2 extends Controller
+class AgcarritoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    const PAGINACION=20;
+
+    const PAGINACION= 10; 
     public function index(Request $request)
-    {   
+    {
         
-        $buscarpor=$request->get('bp');
-        $producto = Producto::where('nombre','like','%'.$buscarpor.'%')->paginate($this::PAGINACION);
-        return view('Busqueda', compact('producto','buscarpor'));
+        $agcarrito= $request->get('agca');
+        $quicarrito= $request->get('quica');
+        if($agcarrito == null and $quicarrito != null){
+        
+            Producto::where('codigo','Like', $quicarrito )->update(['Carrito'=> 0]);
+
+        }elseif($agcarrito != null and $quicarrito == null){
+        Producto::where('codigo','Like', $agcarrito )->update(['Carrito'=> 1]);
+        }elseif($quicarrito!= null and $agcarrito != null){
+
+            Producto::where('codigo','Like', $quicarrito )->update(['Carrito'=> 0]);
+            Producto::where('codigo','Like', $agcarrito )->update(['Carrito'=> 1]);   
+
+        }elseif($quicarrito == null and $agcarrito == null){
+
+        }
+        $producto = Producto::where('Carrito','=','1')->paginate($this::PAGINACION);
+        return view('Carrito', compact('producto'));
     }
 
     /**

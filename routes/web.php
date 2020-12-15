@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource('Producto', 'App\Http\Controllers\Controller2');
+Route::resource('Producto', 'App\Http\Controllers\CarritoController');
+Route::resource('Producto','App\Http\Controllers\AgcarritoController');
+
+
 
 
 
@@ -37,6 +41,10 @@ Route::get('/Busqueda', function () {
 return view('Busqueda');
 })->name('Busqueda');
 
+Route::get('/Carrito', function () {
+    return view('Carrito');
+    })->name('Carrito');
+
 Route::get('/categoria/{idCategoria}', function (Request $request, $idCategoria) {
     $categoria = Categoria::with('productos')->find($idCategoria);
     $categorias = Categoria::all();
@@ -47,5 +55,7 @@ Route::get('/categoria/{idCategoria}', function (Request $request, $idCategoria)
 })->name('categoria');
 
 Route::get('Busqueda','App\Http\Controllers\Controller2@index');
+Route::get('Carrito','App\Http\Controllers\CarritoController@index');
+Route::get('Carrito','App\Http\Controllers\AgcarritoController@index');
 
 
